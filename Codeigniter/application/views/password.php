@@ -11,6 +11,7 @@
     <form>
         <input type = "text" name ="name">
         <button type="submit">送信</button>
+        <button type="button" onclick="history.back()">戻る</button>
     </form>
 </body>
 </html>
