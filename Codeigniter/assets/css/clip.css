@@ -1,0 +1,151 @@
+/* リセット */
+*{
+    padding:0;
+    margin:0;
+  }
+  
+#header {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    left:0;
+    top:0;
+    background:#fff;
+    padding:20px;
+    border-bottom:1px solid;
+    border-color:#999;
+    /* padding-left: 220px; */
+}
+.logo {
+    float:left;
+    width:220px;
+}
+.update_botton {
+    margin-left:30%;
+    padding:5px 30px 5px 30px;
+}
+.user_data {
+    float:right;
+    text-align:right;
+    margin:0;
+}
+.table_text {
+    width:95%;
+    text-align:center;
+    border:none;
+    color:#090; /*あとで削除*/
+}  
+
+#footer {
+    width: 100%;
+    height: 100px;
+    background:#fff;
+    padding: 40px 20px 10px 0;
+    margin-left:240px
+}
+
+#contents {
+    padding-top: 120px;
+    margin-left: 270px;
+}
+
+#sub {
+    box-sizing: border-box;
+    top: 120px;
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    overflow: scroll;
+    background: #f5f5f5;
+    padding: 0 20px 200px 20px;
+}
+#sub h1 {
+      font-size: 18px;
+      padding-left: 10px;
+      border-left: 6px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      margin-top: 20px;
+}
+  
+table{
+    width: 95%;
+    border-collapse: separate;
+    /* border-collapse: collapse; */
+    border-spacing: 0;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+table th:first-child{
+    border-radius: 5px 0 0 0;
+}  
+table th:last-child{
+    border-radius: 0 5px 0 0;
+    border-right: 1px solid #3c6690;
+}
+  
+table th{
+    text-align: center;
+    color:white;
+    background: linear-gradient(#829ebc,#225588);
+    border-left: 1px solid #3c6690;
+    border-top: 1px solid #3c6690;
+    border-bottom: 1px solid #3c6690;
+    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+    padding: 10px 0;
+}
+table td{
+    text-align: center;
+    vertical-align:middle;
+    /* border-top: 1px solid #a8b7c5; */
+    border-left: 1px solid #a8b7c5;
+    border-bottom: 1px solid #a8b7c5;
+    /* border-top:none; */
+    box-shadow: 0px -3px 5px 1px #eee inset;
+    padding: 10px 0;
+}
+table td:last-child{
+    border-right: 1px solid #a8b7c5;
+}
+/* table tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+}
+table tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+} */
+details summary {
+      border-left: solid 6px #2d8fdd;/*左側の線*/
+      background: #f1f8ff;/*背景色*/
+      padding-left: 10px;
+      outline: none;
+  }
+details[open] summary {
+      outline: -webkit-focus-ring-color auto 1px;
+  }
+.side_bar {
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-bottom: 10px;
+      background: #f0f8ff;
+      border-radius :8px;
+      box-shadow :0px 0px 5px silver;
+}
+
+details summary.Snone{
+    padding-left: 5px;
+    border: 0;
+    outline: none;
+    background: #fff;
+}
+details[open] summary.Snone{
+    border: none;
+    outline: none;
+    background: #fff;
+}
+ul{
+      padding-left: 40px;
+}
+
+/* 画面対応-test- */
+@media screen and (max-width: 900px) {
+  .abc { display: none; }
+}
