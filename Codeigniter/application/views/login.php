@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>ログインフォーム</h1>
-    <form action="index.php/welcome/ok"　method="post">
+    <form action="ok"　method="post">
         <div class="form">
             <label for="name">ユーザー名またはメールアドレス</label><br>
             <input type="text" name = "name">
@@ -22,8 +22,8 @@
         <div class="form">
             <input type="submit" value="ログイン">
         </div>
-        <a href="index.php/welcome/forget_password">パスワードを忘れた方はこちらへ</a><br>
-        <a href="index.php/welcome/register">会員登録がまだの方はこちらへ</a>
+        <a href="forget_password">パスワードを忘れた方はこちらへ</a><br>
+        <a href="register">会員登録がまだの方はこちらへ</a>
     </form>
 </body>
 </html>

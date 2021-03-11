@@ -20,5 +20,5 @@
         <font color=#f00>*user[id]*aaaaaa<br></font>
         登録者名:  
         <font color=#f00>*user[name]*aaaa</p><br></font>
-  </div>
+</div>
 </div>

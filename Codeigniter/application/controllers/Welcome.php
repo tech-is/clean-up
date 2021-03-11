@@ -48,4 +48,9 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('register');
 	}
+
+	public function logout()
+	{
+		$this->load->view('logout');
+	}
 }

@@ -20,6 +20,6 @@
     <li>部屋の追加</li>
     <li>部屋の削除</li>
     <li></li>
-    <li>ログアウト</li>
+    <li><a href="welcome/logout">ログアウト</a></li>
   </ul>
 </aside>
