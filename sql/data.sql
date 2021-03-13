@@ -73,7 +73,7 @@ CREATE TABLE `user` (
   `fax_number` int(12) NOT NULL COMMENT 'FAX番号',
   `update_at` datetime NOT NULL COMMENT '最終更新日',
   `created_at` datetime NOT NULL COMMENT 'サービス開始日',
-  `password` char(12) NOT NULL COMMENT 'パスワード'
+  `password` char(255) NOT NULL COMMENT 'パスワード'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='利用者の情報を管理する';
 
 --
@@ -102,7 +102,8 @@ ALTER TABLE `room`
 -- テーブルのインデックス `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `mail` (`mail`);
 
 --
 -- ダンプしたテーブルのAUTO_INCREMENT
