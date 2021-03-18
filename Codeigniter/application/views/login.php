@@ -11,18 +11,16 @@
     <h1>ログインフォーム</h1>
     <form action="index"　method="post">
         <div class="form">
-            <!-- <label>ユーザー名またはメールアドレス</label><br> -->
             <input type="text" name = "name" placeholder="IDまたはメールアドレス">
         </div>
 
         <div class="form">
-            <!-- <label>パスワード</label><br> -->
             <input type="password" name = "password" placeholder="password">
         </div>
         
         <div class="form">
-                <input type="submit"  class="btn" value="ログイン">
-                <button type="button" onclick="location.href='register'">会員登録</button>
+                <input type="submit" class="btn" value="ログイン">
+                <button type="button" class="btn" onclick="location.href='register'">会員登録</button>
         </div>
 
         <div class="link">

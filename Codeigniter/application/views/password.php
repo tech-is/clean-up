@@ -19,8 +19,8 @@
         </tbody>
     </div>
     <div class="button">
-        <button type="button" class="re">再発行する</button>
-        <button type="button" class="back" onclick="history.back()">戻る</button>
+        <button type="button" class="btn">再発行</button>
+        <button type="button" class="btn" onclick="history.back()">戻る</button>
     </div>
 </div>
 </body>

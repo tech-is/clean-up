@@ -149,6 +149,11 @@ ul{
 .abc { display: none; }
 }
 
+/* ボタンデザイン */
+.btn{
+    width: 80px;
+    height: 30px;
+}
 
 
 /* login.php */
@@ -171,21 +176,11 @@ input{
     height: 1.5rem;
 }
 
-    /* ボタンデザイン */
-    /* button{
-        width: 80px;
-        height: 30px;
-    } */
-
 /* register.php */
 .register{
     margin: 1rem;
 }
 
-.btn{
-    width: 80px;
-    height: 30px;
-}
 
 /* password.php */
 

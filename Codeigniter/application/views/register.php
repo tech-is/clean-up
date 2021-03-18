@@ -28,13 +28,7 @@
         </div>
 
         <input type="submit" class="btn" value="登録">
-        <button type="button" class="back" onclick="history.back()">戻る</button>
+        <button type="button" class="btn" onclick="history.back()">戻る</button>
     </form>
 </body>
 </html>
-
-<style>
-register{
-    text-align: center;
-}
-</style>
