@@ -31,6 +31,9 @@ class User extends CI_Controller
         ];
         $id = $this->User_model->insert($data);
 
+        // 登録が完了したらログイン状態にする
+        $_SESSION['id'] = $id;
+
         $output = [
             'id' => $id
         ];
