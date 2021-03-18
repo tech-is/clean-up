@@ -33,11 +33,6 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('footer');
 	}
-	
-	public function ok()
-	{
-		$this->load->view('login_ok');
-	}
 
 	public function forget_password()
 	{

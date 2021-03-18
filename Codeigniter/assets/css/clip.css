@@ -22,7 +22,7 @@
 }
 .update_botton {
     margin-left:30%;
-    padding:5px 30px 5px 30px;
+    /* padding:5px 30px 5px 30px; */
 }
 .user_data {
     float:right;
@@ -147,4 +147,60 @@ ul{
 /* 画面対応-test- */
 @media screen and (max-width: 900px) {
 .abc { display: none; }
+}
+
+
+
+/* login.php */
+h1{
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
+.form{
+    margin: 1rem;
+}
+
+body{
+    margin: 5%;
+}
+
+input{
+    height: 1.5rem;
+}
+
+    /* ボタンデザイン */
+    /* button{
+        width: 80px;
+        height: 30px;
+    } */
+
+/* register.php */
+.register{
+    margin: 1rem;
+}
+
+.btn{
+    width: 80px;
+    height: 30px;
+}
+
+/* password.php */
+
+.password-reissue{
+    text-align: center;
+}
+
+button{
+    text-align: center;
+}
+
+.reissue{
+    margin: 15px;
+}
+
+.back{
+    margin-left: 26px;
 }

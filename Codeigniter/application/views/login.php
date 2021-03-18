@@ -5,25 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログインフォーム</title>
+    <link rel="stylesheet" href="<?=base_url() ?>assets/css/clip.css" type="text/css" />
 </head>
 <body>
     <h1>ログインフォーム</h1>
-    <form action="ok"　method="post">
+    <form action="index"　method="post">
         <div class="form">
-            <label for="name">ユーザー名またはメールアドレス</label><br>
-            <input type="text" name = "name">
+            <!-- <label>ユーザー名またはメールアドレス</label><br> -->
+            <input type="text" name = "name" placeholder="IDまたはメールアドレス">
         </div>
 
         <div class="form">
-            <label for="password">パスワード</label><br>
-            <input type="password" name = "password">
+            <!-- <label>パスワード</label><br> -->
+            <input type="password" name = "password" placeholder="password">
         </div>
         
         <div class="form">
-            <input type="submit" value="ログイン">
+                <input type="submit"  class="btn" value="ログイン">
+                <button type="button" onclick="location.href='register'">会員登録</button>
         </div>
-        <a href="forget_password">パスワードを忘れた方はこちらへ</a><br>
-        <a href="register">会員登録がまだの方はこちらへ</a>
+
+        <div class="link">
+            <a href="forget_password">パスワードを忘れた方はこちらへ</a><br><br>
+        </div>
     </form>
 </body>
 </html>

@@ -13,7 +13,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link href="assets/css/clip.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/css/clip" rel="stylesheet" type="text/css" /> -->
+    <link rel="stylesheet" href="<?=base_url() ?>assets/css/clip.css" type="text/css" />
 </head>
 
 <div id="header">
