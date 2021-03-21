@@ -7,34 +7,35 @@ class Place_model extends CI_Model
         $this->load->database();
     }
 
-    public function find($user_id, $id)
+    public function find($id)
     {
-        return $this->db->where('id')
+        return $this->db->where('id', $id)
             ->get('place')
             ->row_array();
     }
 
     public function findAll($user_id)
     {
-        return $this->db->get('place')
+        return $this->db->where('user_id', $user_id)
+            ->get('place')
             ->result_array();
     }
 
-    public function insert($data, $user_id)
+    public function insert($data)
     {
-        $this->db->insert('place',$data, $user_id);
+        $this->db->insert('place', $data);
         return $this->db->insert_id();
     }
 
-    public function update($user_id, $id, $data)
+    public function update($id, $data)
     {
         $this->db->where('id', $id)
-            ->update('user', $data, $user_id);
+            ->update('place', $data);
     }
 
-    public function delete($id, $user_id)
+    public function delete($id)
     {
         $this->db->where('id', $id)
-            ->delete();
+            ->delete('place');
     }
 }
