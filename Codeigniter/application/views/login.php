@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>ログインフォーム</h1>
-    <form action="index"　method="post">
+    <form id="loginForm">
         <div class="form">
             <input type="text" name = "name" placeholder="IDまたはメールアドレス">
         </div>
@@ -27,6 +27,23 @@
             <a href="forget_password">パスワードを忘れた方はこちらへ</a><br><br>
         </div>
     </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const base_url = '<?= base_url() ?>';
+        $("#loginForm").submit(async function(e) {
+            e.preventDefault();
+            try {
+                await axios.post(base_url + 'User/login', {
+                    name: $('input[name=name]').val(),
+                    password: $('input[name=password]').val()
+                });
+                location.href = base_url;
+            } catch(error) {
+                alert(error.response.data.message);
+            }
+        });
+    </script>
 </body>
 </html>
 

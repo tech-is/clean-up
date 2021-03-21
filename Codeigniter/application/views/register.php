@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>会員登録フォーム</h1>
-    <form action="" nethod="post">
+    <form id="registerForm">
 
         <div class="register">
             <input type="text" name="username" placeholder="ユーザーネーム">
@@ -30,5 +30,24 @@
         <input type="submit" class="btn" value="登録">
         <button type="button" class="btn" onclick="history.back()">戻る</button>
     </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const base_url = '<?= base_url() ?>';
+        $("#registerForm").submit(async function(e) {
+            e.preventDefault();
+            try {
+                await axios.post(base_url + 'User/register', {
+                    uername: $('input[name=username]').val(),
+                    mail: $('input[name=mail]').val(),
+                    password: $('input[name=password]').val(),
+                    confirmationPassword: $('input[name=confirmationPassword]').val()
+                });
+                location.href = base_url;
+            } catch(error) {
+                alert(error.response.data.message);
+            }
+        });
+    </script>
 </body>
 </html>

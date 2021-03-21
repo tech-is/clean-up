@@ -18,7 +18,6 @@ class User extends CI_Controller
 
         $data = [
             'name' => $form['your_name'],
-            'kana' => $form['kana'],
             'mail' => $form['mail'],
             'postcode' => '',
             'prefecture' => '',
@@ -30,6 +29,9 @@ class User extends CI_Controller
             'password' => password_hash($form['password'], PASSWORD_DEFAULT)
         ];
         $id = $this->User_model->insert($data);
+
+        // 登録が完了したらログイン状態にする
+        $_SESSION['id'] = $id;
 
         $output = [
             'id' => $id
@@ -48,7 +50,7 @@ class User extends CI_Controller
         if (isset($user) && password_verify($form['password'], $user['password'])) {
             $_SESSION['id'] = $user['id'];
         } else {
-            $message = 'ログインまたはパスワードが異なります';
+            $message = 'ユーザIDまたはパスワードが異なります';
         }
 
         if (isset($message)) {
