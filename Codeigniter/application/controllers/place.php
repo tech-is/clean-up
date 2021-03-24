@@ -50,4 +50,4 @@ class Place extends CI_Controller
 
             $this->Place_model->delete($form['id']);
     }
-}
+} 
