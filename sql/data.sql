@@ -76,33 +76,20 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='利用者の情報を管理する';
 -- テーブルのインデックス `item`
 --
 ALTER TABLE `item`
-<<<<<<< HEAD
-  ADD PRIMARY KEY `id`);
-=======
   ADD PRIMARY KEY (`id`);
->>>>>>> 142144ef65ae9f590b6b30bbecb5ec2859480236
 
 --
 -- テーブルのインデックス `place`
 --
 ALTER TABLE `place`
-<<<<<<< HEAD
-  ADD PRIMARY KEY `id`);
-=======
   ADD PRIMARY KEY (`id`);
->>>>>>> 142144ef65ae9f590b6b30bbecb5ec2859480236
 
 --
 -- テーブルのインデックス `user`
 --
 ALTER TABLE `user`
-<<<<<<< HEAD
-  ADD PRIMARY KEY `id`),
-  ADD UNIQUE KEY `password` ('password');
-=======
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `password` (`password`);
->>>>>>> 142144ef65ae9f590b6b30bbecb5ec2859480236
 
 --
 -- ダンプしたテーブルのAUTO_INCREMENT
