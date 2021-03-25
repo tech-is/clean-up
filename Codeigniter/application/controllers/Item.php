@@ -26,6 +26,7 @@ class Item extends CI_Controller
             'id' => $id
         ];
         $this->output->set_content_type('applicateion')
+            ->set_output(json_encode($output));
     }
 
     public function put()
