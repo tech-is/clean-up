@@ -78,7 +78,6 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='利用者の情報を管理する';
 ALTER TABLE `item`
   ADD PRIMARY KEY (`id`);
 
-
 --
 -- テーブルのインデックス `place`
 --

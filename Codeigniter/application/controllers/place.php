@@ -1,50 +1,53 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowd');
 
-class Item extends CI_Controller
+class Place extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
         $this->load->library('session');
-        $this->load->model('Item_model');
+        $this->load->model('Place_model');
         date_default_timezone_set('Asia/Tokyo');
     }
+
     public function post()
     {
         $form = json_decode(file_get_contents('php://input'), true);
+        // TODO: 入力値チェック
+
         $data = [
-            'user_id' => $_SESSION['id'],
-            'place_id' => $form['place_id'],
-            'item_name' => $form['item_name'],
-            'created_at' => date("Y-m-d H:i:s")
+            'name' => $form['name'],
+            'user_id' => $_SESSION['id']
         ];
-        $id = $this->Item_model->insert($data);
+        // placeのidを取得
+        $id = $this->Place_model->insert($data);
 
         $output = [
             'id' => $id
         ];
-        $this->output->set_content_type('applicateion')
+        $this->output->set_content_type('application/json')
             ->set_output(json_encode($output));
     }
 
     public function put()
     {
         $form = json_decode(file_get_contents('php://input'), true);
+        // TODO: 入力値チェック
+
         $data = [
-            //'place_id' => $form['place_id'],
-            'item_name' => $form['item_name']
+            'name' => $form['name']
         ];
-        $id = $this->Item_model->update($form['id'],$data);
+
+        $this->Place_model->update($form['id'], $data);
 
     }
 
     public function delete()
     {
         $form = json_decode(file_get_contents('php://input'), true);
-        $id = $this->Item_model->delete($form['id']);
-    }
-}
+        // TODO: 入力値チェック
 
-?>
+            $this->Place_model->delete($form['id']);
+    }
+} 
