@@ -21,6 +21,26 @@ class Place_model extends CI_Model
             ->result_array();
     }
 
+    public function findAllWithItem($user_id)
+    {
+        $places = $this->db->where('user_id', $user_id)
+            ->get('place')
+            ->result_array();
+        $items = $this->db->where('user_id', $user_id)
+            ->get('item')
+            ->result_array();
+
+        $itemMap = [];
+        foreach ($items as $item) {
+            $itemMap[$item['place_id']][] = $item;
+        }
+        foreach ($places as &$place) {
+            $place['items'] = empty($itemMap[$place['id']]) ? [] : $itemMap[$place['id']];
+        }
+
+        return $places;
+    }
+
     public function insert($data)
     {
         $this->db->insert('place', $data);

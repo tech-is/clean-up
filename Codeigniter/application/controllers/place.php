@@ -11,6 +11,19 @@ class Place extends CI_Controller
         date_default_timezone_set('Asia/Tokyo');
     }
 
+    // placeを全て取得（アイテム情報込み）
+    public function getAllWithItem()
+    {
+        // TODO: ログインチェック
+
+        $places = $this->Place_model->findAllWithItem($_SESSION['id']);
+        $output = [
+            'places' => $places
+        ];
+        $this->output->set_content_type('application/json')
+            ->set_output(json_encode($output));
+    }
+
     public function post()
     {
         $form = json_decode(file_get_contents('php://input'), true);
