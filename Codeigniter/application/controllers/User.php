@@ -69,4 +69,18 @@ class User extends CI_Controller
         $_SESSION = [];
         session_destroy();
     }
+
+    // public function send_email()
+    // {
+    //     $this->load->view('send_ok');
+    //     $this->load->helper('phpmailer');
+    //     phpmailer_send(
+    //         'to_addr@eample.com',
+    //         'FROM テスト',
+    //         'from_addr@example.com',
+    //         '件名',
+    //         'メッセージ本文'
+    //     );
+    // }
 }
+
