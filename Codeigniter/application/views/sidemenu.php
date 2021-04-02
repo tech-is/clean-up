@@ -16,11 +16,6 @@
 
   <h1>各種設定</h1>
   <ul class="setting">
-    <li class="addPlace">⭕️場所の追加</li>
-    <li class="check-del">⭕️場所の削除</li>
-    <li class="all-reset">⭕️全て展開</li>
-    <li class="all-set">⭕️全て縮小</li>
-    <li></li>
     <li>ユーザー情報</li>
     <li><a href="welcome/logout">ログアウト</a></li>
   </ul>
@@ -45,53 +40,30 @@ $(document).on("click", ".place-S", function () {
       $('tr').addClass('show');
 });
 
-// サイドバー：場所の追加
-$('.addPlace').click(function(){
+// 場所の追加
+$(document).on("click", ".addPlace", function () {
 
-        if ($('tbody:last').data('value') === undefined) {
-            var tech = "1";
-        } else {
-            var tech = $('tbody:last').data('value') + 1;
-        }
-        var html = '<tbody class="place-' + tech + '" data-value="' + tech + '"><tr class="bg-ffe"><td class="page" data-toggle="collapse" data-target="#accordion' + tech + '"></td><td>000' + tech + '</td><td><input type="text" class="table_text bg-ffe" value="テスト用' + tech + '"></td><td>2021/03/07</td><td><button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;"  data-value="' + tech + '">＋</button></td>'
-        $('table').append(html);
-        var html = '<p><a id="placelist-' + tech + '" class="place-S" data-place="' + tech + '">*place[name]*' + tech + '</a></p>'
-        $('.side_bar').append(html);
+    if ($('tbody:last').data('value') === undefined) {
+        var tech = "1";
+    } else {
+        var tech = $('tbody:last').data('value') + 1;
+    }
 
-        $(".delRow").each(function() {
-            $(this).html('＋');
-            $(this).removeClass();
-            $(this).addClass("btn btn-primary rounded-circle p-0 addRow");
-        });
-});
+    var html = '<tbody class="place-' + tech + '" data-value="' + tech + '"><tr class="bg-ffe"><td class="page" data-toggle="collapse" data-target="#accordion' + tech + '"></td><td>00' + tech + '</td><td><input type="text" class="table_text bg-ffe" value="テスト用' + tech + '"></td><td>2021-03-07</td><td><button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;"  data-value="' + tech + '">＋</button></td>'
+    $('#cleanTab').append(html);
+    // $('table').append(html);
+    var html = '<p><a id="placelist-' + tech + '" class="place-S" data-place="' + tech + '">*place[name]*' + tech + '</a></p>'
+    $('.side_bar').append(html);
 
-// 場所を追加するボタンと削除するボタンを切替する処理
-$(document).on("click", ".check-del", function () {
-      $(".addRow").each(function() {
-        $(this).html('ー');
-        $(this).removeClass();
-        $(this).addClass("btn btn-danger rounded-circle p-0 delRow");
-      });
-
-    $(this).removeClass();
-    $(this).addClass("check-add");
-
-    });
-
-    $(document).on("click", ".check-add", function () {
-      $(".delRow").each(function() {
+    $(".delRow").each(function() {
         $(this).html('＋');
         $(this).removeClass();
         $(this).addClass("btn btn-primary rounded-circle p-0 addRow");
-      });
-
-    $(this).removeClass();
-    $(this).addClass("check-del");
-
     });
+});
 
 
-// サイドバー：場所削除ボタンをクリックした時の処理
+// 場所削除ボタンをクリックした時の処理
 $(document).on('click', '.delRow', function() {
       Swal.fire({
         title: '削除しても宜しいでしょうか？',
@@ -116,13 +88,13 @@ $(document).on('click', '.delRow', function() {
 });
 
 
-// サイドバー：全て展開
+// 全て展開
 $(document).on("click", ".all-reset", function () {
       $('tr').removeClass('show');
       $('tr').addClass('show');
 });
 
-// サイドバー：全て縮小
+// 全て縮小
 $(document).on("click", ".all-set", function () {
       $('tr').removeClass('show');
 });
