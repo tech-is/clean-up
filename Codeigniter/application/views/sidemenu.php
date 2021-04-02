@@ -10,10 +10,10 @@
             <p><a id="placelist-1" class="place-S" data-place="1">*place[name]*1</a></p>
             <p><a id="placelist-2" class="place-S" data-place="2">*place[name]*2</a></p>
             <p><a id="placelist-3" class="place-S" data-place="3">*place[name]*3</a></p>
+				</ul>
+				</font>
         </details>
-        </font>
-        </ul>
-
+	
   <h1>各種設定</h1>
   <ul class="setting">
     <li>ユーザー情報</li>
