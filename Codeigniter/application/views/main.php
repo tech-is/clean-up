@@ -1,40 +1,53 @@
 <style>
-
-.bg-ffe {
-background-color  : #ffe;
-}
 .page {
     background: url(./img/icon_page.png) no-repeat 50%;
 }
-
-
 </style>
-
 
 <div id="contents">
 
-  <table>
+<table style="margin:0;">
+  <tr>
+    <td class="cover" style="width:70%;">
+        <button type="button" class="btn btn-secondary m-1 p-1 all-reset" style="float:left;">全展開</button>
+        <button type="button" class="btn btn-secondary m-1 p-1 all-set" style="float:left;">全収縮</button>
+    </td>
+    <td class="cover">
+        <button type="button" class="btn btn-primary mt-1 p-1 addPlace">場所の追加</button>
+    <td class="cover">
+        <button type="button" class="btn btn-danger mt-1 p-1 check-del">場所の削除</button>
+    </td>
+  </tr>
+</table>
+
+<table id="cleanTab">
     <thead>
   <tr>
     <th style="width:5%;">○</th>
     <th style="width:10%;">管理番号</th>
-    <th style="width:45%;">場所</th>
+    <th style="width:55%;">場所</th>
     <th style="width:15%">更新日</th>
-    <th style="width:10%">情報</th>
+    <th style="width:15%">情報</th>
   </tr>
-<tbody class="place-1">
-  <tr class="bg-ffe">
-    <td class="page" data-toggle="collapse" data-target="#accordion1"></td>
-    <td><font color=#090>*place[id]*</font></td>
-    <td><input type="text" class="table_text bg-ffe" value="*place[name]*"></td>
-    <td><font color=#f00>*item[created_at]*</font></td>
-    <td>
-      <button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;" data-value="1">＋</button>
-      <!-- <button type="button" class="btn btn-danger rounded-circle p-0 delRow" style="width:2rem;height:2rem;" data-value="1">ー</button> -->
-    </td>
-  </tr>
-  <!-- アイテム情報の表示 繰り返し用 -->
-    <tr id="accordion1" class="collapse show">
+
+<?php
+$i = 0;
+$y = 0;
+
+For($i=0;$i<count($cleanup);$i++) { ?>
+    <tbody class="place-<?= $i + 1 ?>" data-value="<?= $i +1 ?>">
+    <tr class="bg-ffe">
+      <td class="page" data-toggle="collapse" data-target="#accordion<?= $i + 1 ?>"></td>
+      <td><font color=#090><?= str_pad($i + 1,3,0,STR_PAD_LEFT); ?></font></td>
+      <td><input type="text" class="table_text bg-ffe" value="<?= $cleanup[$i]['name']; ?>"></td>
+      <td><font color=#f00><?= $cleanup[$i]["info"]; ?></font></td>
+      <td>
+        <button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;" data-value="<?= $i + 1 ?>">＋</button>
+      </td>
+    </tr>
+
+  <?php For($y=0;$y < count($cleanup[$i]['items']);$y++) { ?>
+    <tr id="accordion<?= $i + 1 ?>" class="collapse show">
       <td colspan="1">
                     <p><a></a></p>
       </td>
@@ -42,63 +55,20 @@ background-color  : #ffe;
                     <a><button type="button" class="btn btn-info mt-1 p-0 w-75 check-1" data-status="0">保管中</button></a>
       </td>
       <td colspan="1">
-                    <input type="text" class="table_text" style="color:#f00;" value="*item[item_name]*①">
+                    <input type="text" class="table_text" style="color:#f00;" value="<?= $cleanup[$i]['items'][$y]['item_name'] ?>">
       </td>
       <td colspan="1">
-                    <font color=#f00>*item[created_at]*</font>
+                    <font color=#f00><?= substr($cleanup[$i]['items'][$y]['created_at'],0,10) ?></font>
       </td>
       <td colspan="1">
                     <a><button type="button" class="btn btn-secondary p-0 w-50 remove">削除</button></a>
       </td>
     </tr>
+  <?php } ?>
+  </tbody>
+<?php } ?>
 
-<!-- 繰り返しサンプル用 -->
-    <tr id="accordion1" class="collapse show">
-      <td colspan="1"><p><a></a></p></td>
-      <td colspan="1"><a><button type="button" class="btn btn-info mt-1 p-0 w-75 check-1" data-status="0">保管中</button></a></td>
-      <td colspan="1"><input type="text" class="table_text" style="color:#f00;" value=*item[item_name]*②></td>
-      <td colspan="1"><font color=#f00>*item[created_at]*</font></td>
-      <td colspan="1"><a><button type="button" class="btn btn-secondary p-0 w-50 remove">削除</button></a></td></tr>
-    <tr id="accordion1" class="collapse show">
-      <td colspan="1"><p><a></a></p></td>
-      <td colspan="1"><a><button type="button" class="btn btn-info mt-1 p-0 w-75 check-1" data-status="0">保管中</button></a></td>
-      <td colspan="1"><input type="text" class="table_text" style="color:#f00;" value=*item[item_name]*③></td>
-      <td colspan="1"><font color=#f00>*item[created_at]*</font></td>
-      <td colspan="1"><a><button type="button" class="btn btn-secondary p-0 w-50 remove">削除</button></a></td></tr>
 </tbody>
-
-<!-- 繰り返しサンプル用2 -->
-<tbody class="place-2">
-<tr class="bg-ffe">
-    <td class="page" data-toggle="collapse" data-target="#accordion2"></td>
-    <td>0002</td><td><input type="text" class="table_text bg-ffe" value="テスト用2"></td><td>2021/01/21</td>
-    <td><button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;" data-value="2">＋</button></td>
-</tr>
-<tr id="accordion2" class="collapse show">
-      <td colspan="1"><p><a></a></p></td>
-      <td colspan="1"><a><button type="button" class="btn btn-info mt-1 p-0 w-75 check-1" data-status="0">保管中</button></a></td>
-      <td colspan="1"><input type="text" class="table_text" style="color:#f00;" value=*item[item_name]*②></td>
-      <td colspan="1"><font color=#f00>*item[created_at]*</font></td>
-      <td colspan="1"><a><button type="button" class="btn btn-secondary p-0 w-50 remove">削除</button></a></td></tr>
-<tr id="accordion2" class="collapse show">
-      <td colspan="1"><p><a></a></p></td>
-      <td colspan="1"><a><button type="button" class="btn btn-info mt-1 p-0 w-75 check-1" data-status="0">保管中</button></a></td>
-      <td colspan="1"><input type="text" class="table_text" style="color:#f00;" value=*item[item_name]*③></td>
-      <td colspan="1"><font color=#f00>*item[created_at]*</font></td>
-      <td colspan="1"><a><button type="button" class="btn btn-secondary p-0 w-50 remove">削除</button></a></td></tr>
-</tbody>
-
-
-<?php
-  for($i = 3; $i <= 3; $i++) { ?>
-      <tbody class="place-<?= $i ?>" data-value="<?= $i ?>">
-      <tr class="bg-ffe">
-      <td class="page" data-toggle="collapse" data-target="#accordion<?= $i ?>"></td>
-      <td>000<?= $i ?></td><td><input type="text" class="table_text bg-ffe" value="テスト用<?= $i ?>"></td><td>2021/03/0<?= $i ?></td>
-      <td><button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;"  data-value="<?= $i ?>">＋</button></td>
-      <tr id="accordion<?= $i ?>" class="collapse show"><td colspan="1"><p></p></td><td colspan="1"><button type="button" class="btn btn-info mt-1 p-0 w-75 check-1" data-status="0">保管中</button></td><td colspan="1"><input type="text" class="table_text" style="color:#f00;" value="新しいアイテム"></td><td colspan="1"><font color=#f00>*item[created_at]*</font></td><td colspan="1"><button type="button" class="btn btn-secondary p-0 w-50 remove">削除</button></td></tr></tbody>
-<?php }
-?>
 
 </table>
 
@@ -159,7 +129,7 @@ background-color  : #ffe;
 
 <script>
 // 場所を追加するボタンと削除するボタンを切替する処理
-    $(document).on("click", ".check-5", function () {
+$(document).on("click", ".check-del", function () {
       $(".addRow").each(function() {
         $(this).html('ー');
         $(this).removeClass();
@@ -167,11 +137,11 @@ background-color  : #ffe;
       });
 
     $(this).removeClass();
-    $(this).addClass("check-6");
-
+    $(this).addClass("btn btn-primary mt-1 p-1 check-add");
+    $(this).text('itemの追加');
     });
 
-    $(document).on("click", ".check-6", function () {
+    $(document).on("click", ".check-add", function () {
       $(".delRow").each(function() {
         $(this).html('＋');
         $(this).removeClass();
@@ -179,7 +149,7 @@ background-color  : #ffe;
       });
 
     $(this).removeClass();
-    $(this).addClass("check-5");
-
-    });
+    $(this).addClass("btn btn-danger mt-1 p-1 check-del");
+    $(this).text('場所の削除');
+});
 </script>
