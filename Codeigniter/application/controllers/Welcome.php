@@ -51,14 +51,8 @@ class Welcome extends CI_Controller {
 
 	public function send_email()
     {
-        $this->load->view('send_ok');
         $this->load->helper('phpmailer');
-        phpmailer_send(
-            'to_addr@eample.com',
-            'FROM テスト',
-            'from_addr@example.com',
-            '件名',
-            'メッセージ本文'
-        );
+		phpmailer_send();
+        $this->load->view('send_ok');
     }
 }
