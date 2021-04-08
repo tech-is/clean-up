@@ -12,7 +12,7 @@
     <form id="registerForm">
 
         <div class="register">
-            <input type="text" name="username" placeholder="ユーザーネーム">
+            <input type="text" name="your_name" placeholder="ユーザーネーム">
         </div>
 
         <div class="register">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="register">
-            <input type="password" name="password" placeholder="確認用パスワード">
+            <input type="password" name="confirmationPassword" placeholder="確認用パスワード">
         </div>
 
         <input type="submit" class="btn" value="登録">
@@ -38,7 +38,7 @@
             e.preventDefault();
             try {
                 await axios.post(base_url + 'User/register', {
-                    uername: $('input[name=username]').val(),
+                    your_name: $('input[name=your_name]').val(),
                     mail: $('input[name=mail]').val(),
                     password: $('input[name=password]').val(),
                     confirmationPassword: $('input[name=confirmationPassword]').val()
