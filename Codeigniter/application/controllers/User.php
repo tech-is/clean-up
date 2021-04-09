@@ -83,6 +83,29 @@ class User extends CI_Controller
         }
     }
 
+    public function password()
+    {
+        $form = json_decode(file_get_contents('php://input'), true);
+            $pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+            if(empty($form['mail'])){
+                $message = 'メールアドレスを入力してください。';
+            }elseif(!preg_match($pattern, $form['mail'])){
+                $message = '正しい形式で送信してください。';
+            }
+
+            if (isset($message)) {
+                $output = [
+                    'message' => $message
+                ];
+                $this->output->set_status_header(400)
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($output));
+                return;
+            }
+                $this->load->helper('phpmailer');
+                phpmailer_send();
+    }
+
     public function logout()
     {
         $_SESSION = [];

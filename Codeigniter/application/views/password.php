@@ -11,7 +11,7 @@
 <div class="password-reissue">
     <h1>パスワード再発行</h1>
 <div class="reissue">
-    <form action="send_email" method="post">
+    <form id="password">
         <tbody>
             <tr>
                 <th>メールアドレス</th>
@@ -25,5 +25,21 @@
         </div>
     </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const base_url = '<?= base_url() ?>';
+        $("#password").submit(async function(e) {
+            e.preventDefault();
+            try {
+                await axios.post(base_url + 'User/password', {
+                    mail: $('input[name=mail]').val(),
+                });
+                location.href = base_url;
+            } catch(error) {
+                alert(error.response.data.message);
+            }
+        });
+    </script>
 </body>
 </html>
