@@ -48,6 +48,11 @@ class User extends CI_Controller
 
         $id = $this->User_model->insert($data);
         
+        //CSRF対策（独自ヘッダを持たせる）
+        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+            header('Content-Type: application/json',true,400);
+            exit('{"error":"incalid request"}');
+        }
 
         // 登録が完了したらログイン状態にする
         $_SESSION['id'] = $id;
@@ -55,8 +60,7 @@ class User extends CI_Controller
         $output = [
             'id' => $id
         ];
-        // $this->output->set_content_type('application/json')
-        //     ->set_output(json_encode($output));
+        
     }
 
     public function login()
@@ -81,6 +85,31 @@ class User extends CI_Controller
                 ->set_output(json_encode($output));
             return;
         }
+    }
+
+    public function password()
+    {
+        $form = json_decode(file_get_contents('php://input'), true);
+            $pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+            if(empty($form['mail'])){
+                $message = 'メールアドレスを入力してください。';
+            }elseif(!preg_match($pattern, $form['mail'])){
+                $message = '正しい形式で送信してください。';
+            }
+
+            if (isset($message)) {
+                $output = [
+                    'message' => $message
+                ];
+                $this->output->set_status_header(400)
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($output));
+                return;
+            }
+
+                $this->load->helper('phpmailer');
+                phpmailer_send();
+                $this->load->view('send_ok');
     }
 
     public function logout()

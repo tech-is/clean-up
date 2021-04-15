@@ -48,6 +48,21 @@
                 alert(error.response.data.message);
             }
         });
+        const response = await fetch('/posts',{
+            method:'POST',
+            headers: {
+                'X-Requested-With':'XMLHttpRequest',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                your_name: document.getElementById('your_name').val(),
+                mail : document.getElementById('mail').val(),
+                password : document.getElementById('password').val(),
+                confirmationPassword : document.getElementById('cofirmationPassword').val(),
+            }),
+        });
+        const json = await response.json();
+        console.log(json);
     </script>
 </body>
 </html>
