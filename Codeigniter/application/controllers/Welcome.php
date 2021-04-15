@@ -65,4 +65,10 @@ class Welcome extends CI_Controller {
 		$this->load->view('logout');
 	}
 
+	// public function password()
+	// {
+	// 	$this->load->helper('phpmailer');
+	// 	phpmailer_send();
+	// 	$this->load->view('send_ok');
+	// }
 }

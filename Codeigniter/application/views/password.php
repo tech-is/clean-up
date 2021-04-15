@@ -15,7 +15,7 @@
         <tbody>
             <tr>
                 <th>メールアドレス</th>
-                <th><input type="mail" name="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></th>
+                <th><input type="mail" name="mail"></th>
             </tr>
         </tbody>
 </div>
@@ -33,7 +33,7 @@
             e.preventDefault();
             try {
                 await axios.post(base_url + 'User/password', {
-                    mail: $('input[name=mail]').val(),
+                    mail: $('input[name=mail]').val()
                 });
                 location.href = base_url;
             } catch(error) {
