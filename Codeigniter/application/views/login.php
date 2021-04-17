@@ -34,6 +34,7 @@
         $("#loginForm").submit(async function(e) {
             e.preventDefault();
             try {
+                axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
                 await axios.post(base_url + 'User/login', {
                     name: $('input[name=name]').val(),
                     password: $('input[name=password]').val()

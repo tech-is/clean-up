@@ -10,9 +10,14 @@ class User extends CI_Controller
         $this->load->model('User_model');
         date_default_timezone_set('Asia/Tokyo');
     }
-
+    
     public function register()
     {
+        //CSRF対策（独自ヘッダを持たせる）
+        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+            header('Content-Type: application/json',true,400);
+            exit('{"error":"incalid request"}');
+        }
         $form = json_decode(file_get_contents('php://input'), true);
 
         $message = null;
@@ -48,11 +53,6 @@ class User extends CI_Controller
 
         $id = $this->User_model->insert($data);
         
-        //CSRF対策（独自ヘッダを持たせる）
-        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-            header('Content-Type: application/json',true,400);
-            exit('{"error":"incalid request"}');
-        }
 
         // 登録が完了したらログイン状態にする
         $_SESSION['id'] = $id;
@@ -65,6 +65,10 @@ class User extends CI_Controller
 
     public function login()
     {
+        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+            header('Content-Type: application/json',true,400);
+            exit('{"error":"incalid request"}');
+        }
         $form = json_decode(file_get_contents('php://input'), true);
         // TODO: 入力値チェック
 
@@ -89,6 +93,10 @@ class User extends CI_Controller
 
     public function password()
     {
+        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+            header('Content-Type: application/json',true,400);
+            exit('{"error":"incalid request"}');
+        }
         $form = json_decode(file_get_contents('php://input'), true);
             $pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
             if(empty($form['mail'])){

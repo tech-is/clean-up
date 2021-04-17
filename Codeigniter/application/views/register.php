@@ -37,6 +37,7 @@
         $("#registerForm").submit(async function(e) {
             e.preventDefault();
             try {
+                axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
                 await axios.post(base_url + 'User/register', {
                     your_name: $('input[name=your_name]').val(),
                     mail: $('input[name=mail]').val(),
@@ -48,21 +49,6 @@
                 alert(error.response.data.message);
             }
         });
-        const response = await fetch('/posts',{
-            method:'POST',
-            headers: {
-                'X-Requested-With':'XMLHttpRequest',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                your_name: document.getElementById('your_name').val(),
-                mail : document.getElementById('mail').val(),
-                password : document.getElementById('password').val(),
-                confirmationPassword : document.getElementById('cofirmationPassword').val(),
-            }),
-        });
-        const json = await response.json();
-        console.log(json);
     </script>
 </body>
 </html>

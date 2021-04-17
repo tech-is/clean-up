@@ -31,7 +31,7 @@
         const base_url = '<?= base_url() ?>';
         $("#password").submit(async function(e) {
             e.preventDefault();
-            try {
+            try {axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
                 await axios.post(base_url + 'User/password', {
                     mail: $('input[name=mail]').val()
                 });
