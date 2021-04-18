@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,11 +31,12 @@
         const base_url = '<?= base_url() ?>';
         $("#password").submit(async function(e) {
             e.preventDefault();
-            try {axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
+            try {
+                axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
                 await axios.post(base_url + 'User/password', {
                     mail: $('input[name=mail]').val()
                 });
-                location.href = base_url;
+                location.href = base_url + 'welcome/send_ok';
             } catch(error) {
                 alert(error.response.data.message);
             }

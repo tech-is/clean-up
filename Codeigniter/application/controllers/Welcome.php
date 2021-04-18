@@ -55,6 +55,11 @@ class Welcome extends CI_Controller {
 		$this->load->view('password');
 	}
 
+	public function send_ok()
+	{
+		$this->load->view('send_ok');
+	}
+
 	public function register()
 	{
 		$this->load->view('register');

@@ -13,30 +13,31 @@ class User extends CI_Controller
     
     public function register()
     {
-        //CSRF対策（独自ヘッダを持たせる）
-        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-            header('Content-Type: application/json',true,400);
-            exit('{"error":"incalid request"}');
-        }
         $form = json_decode(file_get_contents('php://input'), true);
-
-        $message = null;
-        if(empty($form['your_name']) || empty($form['mail']) || 
-        empty($form['password']) || empty($form['confirmationPassword']) ){
+            
+            $message = null;
+            if(empty($form['your_name']) || empty($form['mail']) || 
+            empty($form['password']) || empty($form['confirmationPassword']) ){
                 $message = '全て入力してください。';
-        }elseif($form['password'] !== $form['confirmationPassword']){
-            $message = 'パスワードを一致させてください。';
-        }
-
-        if (isset($message)) {
-            $output = [
-                'message' => $message
-            ];
-            $this->output->set_status_header(400)
+            }elseif($form['password'] !== $form['confirmationPassword']){
+                $message = 'パスワードを一致させてください。';
+            }
+            
+            if (isset($message)) {
+                $output = [
+                    'message' => $message
+                ];
+                $this->output->set_status_header(400)
                 ->set_content_type('application/json')
                 ->set_output(json_encode($output));
-            return;
-        }
+                return;
+            }
+            
+            //CSRF対策（独自ヘッダを持たせる）
+            if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+                header('Content-Type: application/json',true,400);
+                exit('{"error":"incalid request"}');
+            }
 
         $data = [
             'name' => $form['your_name'],
@@ -65,21 +66,21 @@ class User extends CI_Controller
 
     public function login()
     {
-        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-            header('Content-Type: application/json',true,400);
-            exit('{"error":"incalid request"}');
-        }
         $form = json_decode(file_get_contents('php://input'), true);
-        // TODO: 入力値チェック
-
-        $user = $this->User_model->findByMail($form['name']);
-        $message = null;
-        if (isset($user) && password_verify($form['password'], $user['password'])) {
-            $_SESSION['id'] = $user['id'];
-        } else {
-            $message = 'ユーザIDまたはパスワードが異なります';
-        }
-
+            // TODO: 入力値チェック
+            if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+                header('Content-Type: application/json',true,400);
+                exit('{"error":"incalid request"}');
+            }
+            
+            
+            $user = $this->User_model->findByMail($form['name']);
+            $message = null;
+            if (isset($user) && password_verify($form['password'], $user['password'])) {
+                $_SESSION['id'] = $user['id'];
+            } else {
+                $message = 'ユーザIDまたはパスワードが異なります';
+            }
         if (isset($message)) {
             $output = [
                 'message' => $message
@@ -93,10 +94,6 @@ class User extends CI_Controller
 
     public function password()
     {
-        if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-            header('Content-Type: application/json',true,400);
-            exit('{"error":"incalid request"}');
-        }
         $form = json_decode(file_get_contents('php://input'), true);
             $pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
             if(empty($form['mail'])){
@@ -104,20 +101,24 @@ class User extends CI_Controller
             }elseif(!preg_match($pattern, $form['mail'])){
                 $message = '正しい形式で送信してください。';
             }
-
+            
             if (isset($message)) {
                 $output = [
                     'message' => $message
                 ];
                 $this->output->set_status_header(400)
-                    ->set_content_type('application/json')
-                    ->set_output(json_encode($output));
+                ->set_content_type('application/json')
+                ->set_output(json_encode($output));
                 return;
             }
-
+            
+            if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+                header('Content-Type: application/json',true,400);
+                exit('{"error":"incalid request"}');
+            }
                 $this->load->helper('phpmailer');
-                phpmailer_send();
-                $this->load->view('send_ok');
+                phpmailer_send($form['mail']);
+                //$this->load->view('send_ok');
     }
 
     public function logout()
