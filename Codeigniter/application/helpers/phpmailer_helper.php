@@ -10,13 +10,13 @@ require_once( dirname( __FILE__ ).'/PHPMailer/src/Exception.php' );
 require_once( dirname( __FILE__ ).'/PHPMailer/src/SMTP.php' );
 
 
-function phpmailer_send()
+function phpmailer_send($to)
 {
 
     $mail = new PHPMailer(true);
     try {
         //送信先情報
-        $to         = $_POST['mail']; //送信先アドレス
+        //$to         = $_POST['mail']; //送信先アドレス
         $toname    = "送信先の名前";
         //smtp設定情報
         $username  = "yoshiki.formula@gmail.com"; //取得した捨てGmail
