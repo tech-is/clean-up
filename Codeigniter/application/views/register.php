@@ -37,6 +37,7 @@
         $("#registerForm").submit(async function(e) {
             e.preventDefault();
             try {
+                axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
                 await axios.post(base_url + 'User/register', {
                     your_name: $('input[name=your_name]').val(),
                     mail: $('input[name=mail]').val(),

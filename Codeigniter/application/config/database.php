@@ -73,12 +73,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+if ($url = getenv('CLEARDB_DATABASE_URL')) {
+	// herokuの場合
+    $parts = parse_url($url);
+    $hostname = $parts['host'];
+    $username = $parts['user'];
+    $password = $parts['pass'];
+    $database = substr($parts['path'], 1);
+} else {
+	// ローカルの場合
+    $hostname = 'localhost';
+    $username = 'root';
+    $password = 'root';
+    $database = 'cleanup';
+}
+
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'cleanup',
+	'hostname' => $hostname,
+	'username' => $username,
+	'password' => $password,
+	'database' => $database,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

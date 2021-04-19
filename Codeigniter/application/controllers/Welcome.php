@@ -55,6 +55,11 @@ class Welcome extends CI_Controller {
 		$this->load->view('password');
 	}
 
+	public function send_ok()
+	{
+		$this->load->view('send_ok');
+	}
+
 	public function register()
 	{
 		$this->load->view('register');
@@ -65,16 +70,10 @@ class Welcome extends CI_Controller {
 		$this->load->view('logout');
 	}
 
-	public function send_email()
-    {
-        $this->load->view('send_ok');
-        $this->load->helper('phpmailer');
-        phpmailer_send(
-            'to_addr@eample.com',
-            'FROM テスト',
-            'from_addr@example.com',
-            '件名',
-            'メッセージ本文'
-        );
-    }
+	// public function password()
+	// {
+	// 	$this->load->helper('phpmailer');
+	// 	phpmailer_send();
+	// 	$this->load->view('send_ok');
+	// }
 }
