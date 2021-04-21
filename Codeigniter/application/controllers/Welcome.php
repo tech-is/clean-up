@@ -18,6 +18,15 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('session');
+        $this->load->model('User_model');
+        date_default_timezone_set('Asia/Tokyo');
+    }
+
 	public function login()
 	{
 		$this->load->view('login');
@@ -26,22 +35,24 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 
-		$this->load->model('place_model');
-		$this->load->library('session');
-
-		// テスト用
-		$_SESSION['id'] = "1";
-
+		$this->load->model('Place_model');
+		
+		if(empty($_SESSION['id'])){
+			header('Location: ' . base_url() . 'welcome/login');
+			exit;
+		}
+		$user = $this->User_model->find($_SESSION['id']);
+		
 		$dataA = [];
 		$cleanup = [];
 		
-		$dataA = $this->place_model->findAllWithItem($_SESSION['id']);
+		$dataA = $this->Place_model->findAllWithItem($_SESSION['id']);
 
 			foreach ($dataA as $value) {
 				$dataA['cleanup'][] = $value;
 			}
 
-		$this->load->view('header');
+		$this->load->view('header',$user);
 
 		$this->load->view('sidemenu');
 	
@@ -67,13 +78,8 @@ class Welcome extends CI_Controller {
 
 	public function logout()
 	{
+		$_SESSION = [];
+		session_destroy();
 		$this->load->view('logout');
 	}
-
-	// public function password()
-	// {
-	// 	$this->load->helper('phpmailer');
-	// 	phpmailer_send();
-	// 	$this->load->view('send_ok');
-	// }
 }
