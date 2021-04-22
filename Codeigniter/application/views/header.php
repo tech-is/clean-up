@@ -24,7 +24,7 @@
     <p class="abc user_data">
         ユーザーID:
         <!-- <font color=#00f>*user[id]*aaaaaa<br></font> -->
-        <font color=#00f><?php echo $mail; ?></font>
+        <font color=#00f><?php echo $mail; ?></font><br>
         登録者名:  
         <font color=#00f><?php echo $name; ?> </p><br></font>
 </div>
