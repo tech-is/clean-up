@@ -68,6 +68,14 @@ CREATE TABLE `user`
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='利用者の情報を管理する';
 
+-- パスワードを忘れた際の一時的なテーブル
+CREATE TABLE `password_reset` 
+(
+  `mail` varchar(255) NOT NULL COMMENT 'メールアドレス',
+  `token` char(255) NOT NULL COMMENT 'トークン',
+  `created_at` datetime NOT NULL COMMENT '作成日時'
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='パスワードリセット情報を管理する';
 --
 -- ダンプしたテーブルのインデックス
 --

@@ -23,8 +23,9 @@
 <button type="button" class="btn btn-success mt-1 update_botton">更新</button>
     <p class="abc user_data">
         ユーザーID:
-        <font color=#00f>*user[id]*aaaaaa<br></font>
+        <!-- <font color=#00f>*user[id]*aaaaaa<br></font> -->
+        <font color=#00f><?php echo $mail; ?></font>
         登録者名:  
-        <font color=#00f>*user[name]*aaaa</p><br></font>
+        <font color=#00f><?php echo $name; ?> </p><br></font>
 </div>
 </div>
