@@ -43,20 +43,14 @@ class Welcome extends CI_Controller {
 		}
 		$user = $this->User_model->find($_SESSION['id']);
 		
-		$dataA = [];
-		$cleanup = [];
-		
-		$dataA = $this->Place_model->findAllWithItem($_SESSION['id']);
-
-			foreach ($dataA as $value) {
-				$dataA['cleanup'][] = $value;
-			}
+		$data = [];
+		$data['cleanup'] = $this->Place_model->findAllWithItem($_SESSION['id']);
 
 		$this->load->view('header',$user);
 
 		$this->load->view('sidemenu');
 	
-		$this->load->view('main',$dataA);
+		$this->load->view('main',$data);
 
 		$this->load->view('footer');
 	}
