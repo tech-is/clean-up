@@ -100,7 +100,7 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `password` (`password`);
 
 --
---テーブルのインデックス`password_reset`
+-- テーブルのインデックス`password_reset`
 --
 ALTER TABLE `password_reset`
   ADD PRIMARY KEY (`token`);
