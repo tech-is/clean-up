@@ -6,10 +6,11 @@
         <details open><summary>場所別</summary>
         <font color=#090>
         <ul class="side_bar">
-            <p><a class="place-All" data-place="all">全ての場所</a></p>     
-            <p><a id="placelist-1" class="place-S" data-place="1">*place[name]*1</a></p>
-            <p><a id="placelist-2" class="place-S" data-place="2">*place[name]*2</a></p>
-            <p><a id="placelist-3" class="place-S" data-place="3">*place[name]*3</a></p>
+            <p><a class="place-All" data-place="all">全ての場所</a></p>
+            <?php
+            for($i=0;$i < count($cleanup);$i++) { ?>
+                <p><a id="placelist-<?= $cleanup[$i]["id"] ?>" class="place-S" data-place="<?= $cleanup[$i]["id"] ?>"><?= $cleanup[$i]["name"] ?></a></p>
+            <?php } ?>
 	</ul>
 	</font>
         </details>
@@ -49,9 +50,8 @@ $(document).on("click", ".addPlace", function () {
         var tech = $('tbody:last').data('value') + 1;
     }
 
-    var html = '<tbody class="place-' + tech + '" data-value="' + tech + '"><tr class="bg-ffe"><td class="page" data-toggle="collapse" data-target="#accordion' + tech + '"></td><td>00' + tech + '</td><td><input type="text" class="table_text bg-ffe" value="テスト用' + tech + '"></td><td>2021-03-07</td><td><button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;"  data-value="' + tech + '">＋</button></td>'
+    var html = '<tbody class="place-' + tech + '" data-value="' + tech + '"><tr class="bg-ffe"><td class="page" data-toggle="collapse" data-target="#accordion' + tech + '"></td><td>00' + tech + '</td><td><input type="text" class="place_text table_text bg-ffe" data-placeid="'+tech+'" value="テスト用' + tech + '"></td><td>2021-03-07</td><td><button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;"  data-value="' + tech + '">＋</button></td>'
     $('#cleanTab').append(html);
-    // $('table').append(html);
     var html = '<p><a id="placelist-' + tech + '" class="place-S" data-place="' + tech + '">*place[name]*' + tech + '</a></p>'
     $('.side_bar').append(html);
 
