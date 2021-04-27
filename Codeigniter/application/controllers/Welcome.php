@@ -48,7 +48,7 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('header',$user);
 
-		$this->load->view('sidemenu');
+		$this->load->view('sidemenu',$data);
 	
 		$this->load->view('main',$data);
 
