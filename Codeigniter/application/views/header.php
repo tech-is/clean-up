@@ -20,7 +20,6 @@
 <div id="header">
 <img src="img/techis-logo.svg" alt="タイトルロゴ" title="片付け管理システム" class="logo">
 <div style="padding-top:20px;">
-<button type="button" class="btn btn-success mt-1 update_botton">更新</button>
     <p class="abc user_data">
         ユーザーID:
         <!-- <font color=#00f>*user[id]*aaaaaa<br></font> -->
