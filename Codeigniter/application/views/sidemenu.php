@@ -44,47 +44,60 @@ $(document).on("click", ".place-S", function () {
 // 場所の追加
 $(document).on("click", ".addPlace", function () {
 
-    if ($('tbody:last').data('value') === undefined) {
+    if ($('tbody:last').data('head') === undefined) {
         var tech = "1";
     } else {
-        var tech = $('tbody:last').data('value') + 1;
+        var tech = $('tbody:last').data('head') + 1;
     }
-
-    var html = '<tbody class="place-' + tech + '" data-value="' + tech + '"><tr class="bg-ffe"><td class="page" data-toggle="collapse" data-target="#accordion' + tech + '"></td><td>00' + tech + '</td><td><input type="text" class="place_text table_text bg-ffe" data-placeid="'+tech+'" value="テスト用' + tech + '"></td><td>2021-03-07</td><td><button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;"  data-value="' + tech + '">＋</button></td>'
-    $('#cleanTab').append(html);
-    var html = '<p><a id="placelist-' + tech + '" class="place-S" data-place="' + tech + '">*place[name]*' + tech + '</a></p>'
-    $('.side_bar').append(html);
 
     $(".delRow").each(function() {
         $(this).html('＋');
         $(this).removeClass();
-        $(this).addClass("btn btn-primary rounded-circle p-0 addRow");
+        $(this).addClass("btn btn-primary rounded-circle p-0 addRow")
     });
-});
+
+        $(".check-add").text('場所の削除');
+        $(".check-add").addClass("btn btn-danger mt-1 p-1 check-del");
+        $(".check-add").removeClass("btn-primary check-add");
 
 
-// 場所削除ボタンをクリックした時の処理
-$(document).on('click', '.delRow', function() {
-      Swal.fire({
-        title: '削除しても宜しいでしょうか？',
-        html: '<span style="color:red;">元に戻す事は出来ません。</span>',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.value) {
-          Swal.fire({
-            text: "削除されました",
-            type:"success"
+    var user_id = <?php echo json_encode($_SESSION['id']); ?>;
+
+    $.ajax({
+        type: "POST",
+        url: "add_place.php",
+        data:{ "user_id" : user_id},
+        dataType : "json"
+      })
+
+      .done(function(data){
+        // 表示を書き換える場合
+        $("#return").html('<p>'+data.DB_check+'</p>');
+
+        var html = '<tbody id="tbody_dataSet"><tr class="bg-ffe"><td class="page" data-toggle="collapse" data-target="#accordion' + data.DB_check + '"></td><td><font color=#090>' + (('000' +tech).slice(-3)) + '</font></td><td><input type="text" class="place_text table_text bg-ffe" id="place_nameSet" value="new-place"></td><td><input type="text" class="info_text table_text bg-ffe" id="place_infoSet" value="new-info"></td><td><button type="button" class="btn btn-primary rounded-circle p-0 addRow" style="width:2rem;height:2rem;" data-value="' + data.DB_check + '">＋</button></td>'
+        $('#cleanTab').append(html);
+        var html = '<p><a id="placelist-' + data.DB_check + '" class="place-S" data-place="' + data.DB_check + '">new-place</a></p>'
+        $('.side_bar').append(html);
+
+
+        $(document).ready(function(){
+          // 後でデータベースから引用する形に変更する、
+          $("#tbody_dataSet").addClass("place-"+data.DB_check);
+          $("#tbody_dataSet").attr('data-head', tech);
+          document.getElementById("tbody_dataSet").removeAttribute("id");
+
+          $("#place_nameSet").attr('data-placeid', data.DB_check);
+          document.getElementById("place_nameSet").removeAttribute("id");
+          $("#place_infoSet").attr('data-infoid', data.DB_check); 
+          document.getElementById("place_infoSet").removeAttribute("id");
+
         });
-          $(this).parents('tbody').remove();
-          var dellist = '#placelist-' + $(this).data('value');
-          $(dellist).remove();
+      })
+      
+      .fail(function(XMLHttpRequest, status, error_message){
+        alert(error_message);
+      });
 
-    }
-  });
 });
 
 
