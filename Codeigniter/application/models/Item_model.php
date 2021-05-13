@@ -14,6 +14,14 @@ class Item_model extends CI_Model
             ->row_array();
     }
 
+    public function findPlace($place_id)
+    {
+        return $this->db->where('place_id', $place_id)
+            ->get('item')
+            ->row_array();
+            // ->result_array();
+    }
+
     public function findAll($user_id)
     {
         return $this->db->where('user_id', $user_id)
