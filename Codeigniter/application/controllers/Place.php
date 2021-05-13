@@ -31,6 +31,7 @@ class Place extends CI_Controller
 
         $data = [
             'name' => $form['name'],
+            'info' => 'new-info',
             'user_id' => $_SESSION['id']
         ];
         // placeのidを取得
@@ -60,7 +61,34 @@ class Place extends CI_Controller
     {
         $form = json_decode(file_get_contents('php://input'), true);
         // TODO: 入力値チェック
-
+        $this->load->model('Item_model');
+        $place_check = $this->Item_model->findPlace($form['id']);
+        
+        if(empty($place_check)) {
+            $check = "TRUE";
             $this->Place_model->delete($form['id']);
+		}else {
+            $check = "FALSE";
+		}
+
+        $output = [
+            'place_check' => $check
+        ];
+        $this->output->set_content_type('application/json')
+            ->set_output(json_encode($output));
     }
+
+    public function info()
+    {
+        $form = json_decode(file_get_contents('php://input'), true);
+        // TODO: 入力値チェック
+
+        $data = [
+            'info' => $form['info']
+        ];
+
+        $this->Place_model->update($form['id'], $data);
+
+    }
+
 } 
